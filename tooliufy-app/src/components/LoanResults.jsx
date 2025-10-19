@@ -37,28 +37,42 @@ function LoanResults({ results }) {
         }
       }}
     >
-      <CardContent>
+      <CardContent sx={{ p: { xs: 2, xl: 3 } }}>
         <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
           <Box
             sx={{
               bgcolor: color,
               borderRadius: '50%',
-              p: 1,
+              p: { xs: 1, xl: 1.5 },
               display: 'flex',
               mr: 1.5
             }}
           >
             {icon}
           </Box>
-          <Typography variant="subtitle2" color="text.secondary" fontWeight="medium">
+          <Typography
+            variant="subtitle2"
+            color="text.secondary"
+            fontWeight="medium"
+            sx={{ fontSize: { xs: '0.875rem', xl: '1rem' } }}
+          >
             {title}
           </Typography>
         </Box>
-        <Typography variant="h5" fontWeight="bold" color={color} sx={{ mb: 0.5 }}>
+        <Typography
+          variant="h5"
+          fontWeight="bold"
+          color={color}
+          sx={{ mb: 0.5, fontSize: { xs: '1.5rem', xl: '1.75rem', xxl: '2rem' } }}
+        >
           {value}
         </Typography>
         {subtitle && (
-          <Typography variant="caption" color="text.secondary">
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ fontSize: { xs: '0.75rem', xl: '0.875rem' } }}
+          >
             {subtitle}
           </Typography>
         )}
@@ -82,7 +96,7 @@ function LoanResults({ results }) {
           </Box>
           <Divider sx={{ mb: 3 }} />
 
-          <Grid container spacing={2}>
+          <Grid container spacing={{ xs: 2, xl: 3 }}>
             {/* 每月繳款金額 */}
             <Grid item xs={12} sm={6}>
               <ResultCard
@@ -129,7 +143,7 @@ function LoanResults({ results }) {
 
           {/* 統計資訊 */}
           <Box sx={{ mt: 3, p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
-            <Grid container spacing={2}>
+            <Grid container spacing={{ xs: 2, xl: 3 }}>
               <Grid item xs={6}>
                 <Typography variant="body2" color="text.secondary">
                   利息占比

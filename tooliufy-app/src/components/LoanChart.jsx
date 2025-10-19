@@ -105,7 +105,7 @@ function LoanChart({ schedule }) {
         borderRadius: 2
       }}
     >
-      <CardContent sx={{ p: { xs: 2, sm: 3, md: 4 } }}>
+      <CardContent sx={{ p: { xs: 2, sm: 3, md: 4, xl: 5 } }}>
         <Box
           sx={{
             display: 'flex',
@@ -117,8 +117,13 @@ function LoanChart({ schedule }) {
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <ShowChartIcon sx={{ color: 'primary.main', mr: 1 }} />
-            <Typography variant="h6" color="primary" fontWeight="bold">
+            <ShowChartIcon sx={{ color: 'primary.main', mr: 1, fontSize: { xs: '1.5rem', xl: '1.75rem' } }} />
+            <Typography
+              variant="h6"
+              color="primary"
+              fontWeight="bold"
+              sx={{ fontSize: { xs: '1.25rem', xl: '1.5rem' } }}
+            >
               視覺化分析
             </Typography>
           </Box>
@@ -157,10 +162,10 @@ function LoanChart({ schedule }) {
         </Box>
         <Divider sx={{ mb: 3 }} />
 
-        <Grid container spacing={{ xs: 2, md: 3 }}>
+        <Grid container spacing={{ xs: 2, md: 3, xl: 4 }}>
           {/* 主圖表 */}
           <Grid item xs={12} lg={chartType === 'pie' ? 6 : 12}>
-            <Box sx={{ width: '100%', height: { xs: 300, sm: 350, md: 400 } }}>
+            <Box sx={{ width: '100%', height: { xs: 300, sm: 350, md: 400, xl: 500, xxl: 600 } }}>
               {chartType === 'line' && (
                 <ResponsiveContainer>
                   <AreaChart data={chartData}>
@@ -239,10 +244,16 @@ function LoanChart({ schedule }) {
           {/* 剩餘本金趨勢圖 */}
           {chartType === 'pie' && (
             <Grid item xs={12} lg={6}>
-              <Typography variant="subtitle1" gutterBottom fontWeight="bold" color="text.secondary">
+              <Typography
+                variant="subtitle1"
+                gutterBottom
+                fontWeight="bold"
+                color="text.secondary"
+                sx={{ fontSize: { xs: '1rem', xl: '1.125rem' } }}
+              >
                 剩餘本金變化
               </Typography>
-              <Box sx={{ width: '100%', height: { xs: 300, sm: 350 } }}>
+              <Box sx={{ width: '100%', height: { xs: 300, sm: 350, xl: 450, xxl: 550 } }}>
                 <ResponsiveContainer>
                   <LineChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" />

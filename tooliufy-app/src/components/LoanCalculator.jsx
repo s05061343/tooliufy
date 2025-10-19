@@ -110,9 +110,9 @@ function LoanCalculator({ repaymentType }) {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Grid container spacing={{ xs: 2, md: 3 }} justifyContent="center">
+      <Grid container spacing={{ xs: 2, md: 3, xl: 4 }} justifyContent="center">
         {/* 左側：輸入區域 */}
-        <Grid item xs={12} lg={4}>
+        <Grid item xs={12} lg={4} xl={3.5}>
           <Card
             variant="outlined"
             sx={{
@@ -127,8 +127,14 @@ function LoanCalculator({ repaymentType }) {
               }
             }}
           >
-            <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
-              <Typography variant="h6" gutterBottom color="primary" fontWeight="bold">
+            <CardContent sx={{ p: { xs: 2, sm: 3, xl: 4 } }}>
+              <Typography
+                variant="h6"
+                gutterBottom
+                color="primary"
+                fontWeight="bold"
+                sx={{ fontSize: { xs: '1.25rem', xl: '1.5rem' } }}
+              >
                 貸款資訊
               </Typography>
               <Divider sx={{ mb: 3 }} />
@@ -248,7 +254,7 @@ function LoanCalculator({ repaymentType }) {
         </Grid>
 
         {/* 右側：結果顯示 */}
-        <Grid item xs={12} lg={8}>
+        <Grid item xs={12} lg={8} xl={8.5}>
           {calculationResults ? (
             <LoanResults results={calculationResults} />
           ) : (

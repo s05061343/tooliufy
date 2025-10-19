@@ -53,7 +53,7 @@ function LoanScheduleTable({ schedule }) {
         borderRadius: 2
       }}
     >
-      <CardContent sx={{ p: { xs: 2, sm: 3, md: 4 } }}>
+      <CardContent sx={{ p: { xs: 2, sm: 3, md: 4, xl: 5 } }}>
         <Box
           sx={{
             display: 'flex',
@@ -64,8 +64,13 @@ function LoanScheduleTable({ schedule }) {
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', flex: 1 }}>
-            <TableChartIcon sx={{ color: 'primary.main', mr: 1 }} />
-            <Typography variant="h6" color="primary" fontWeight="bold">
+            <TableChartIcon sx={{ color: 'primary.main', mr: 1, fontSize: { xs: '1.5rem', xl: '1.75rem' } }} />
+            <Typography
+              variant="h6"
+              color="primary"
+              fontWeight="bold"
+              sx={{ fontSize: { xs: '1.25rem', xl: '1.5rem' } }}
+            >
               還款明細表
             </Typography>
           </Box>
@@ -82,17 +87,19 @@ function LoanScheduleTable({ schedule }) {
           <Table sx={{ minWidth: { xs: 300, sm: 650 } }} size="small">
             <TableHead>
               <TableRow sx={{ bgcolor: 'primary.main' }}>
-                <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>期數</TableCell>
-                <TableCell align="right" sx={{ color: 'white', fontWeight: 'bold' }}>
+                <TableCell sx={{ color: 'white', fontWeight: 'bold', fontSize: { xs: '0.875rem', xl: '1rem' } }}>
+                  期數
+                </TableCell>
+                <TableCell align="right" sx={{ color: 'white', fontWeight: 'bold', fontSize: { xs: '0.875rem', xl: '1rem' } }}>
                   繳款金額
                 </TableCell>
-                <TableCell align="right" sx={{ color: 'white', fontWeight: 'bold' }}>
+                <TableCell align="right" sx={{ color: 'white', fontWeight: 'bold', fontSize: { xs: '0.875rem', xl: '1rem' } }}>
                   本金
                 </TableCell>
-                <TableCell align="right" sx={{ color: 'white', fontWeight: 'bold' }}>
+                <TableCell align="right" sx={{ color: 'white', fontWeight: 'bold', fontSize: { xs: '0.875rem', xl: '1rem' } }}>
                   利息
                 </TableCell>
-                <TableCell align="right" sx={{ color: 'white', fontWeight: 'bold' }}>
+                <TableCell align="right" sx={{ color: 'white', fontWeight: 'bold', fontSize: { xs: '0.875rem', xl: '1rem' } }}>
                   剩餘本金
                 </TableCell>
               </TableRow>
@@ -115,16 +122,16 @@ function LoanScheduleTable({ schedule }) {
                       variant={row.period === 1 ? 'filled' : 'outlined'}
                     />
                   </TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 'medium' }}>
+                  <TableCell align="right" sx={{ fontWeight: 'medium', fontSize: { xs: '0.875rem', xl: '1rem' } }}>
                     {formatCurrency(row.payment)}
                   </TableCell>
-                  <TableCell align="right" sx={{ color: 'success.main' }}>
+                  <TableCell align="right" sx={{ color: 'success.main', fontSize: { xs: '0.875rem', xl: '1rem' } }}>
                     {formatCurrency(row.principal)}
                   </TableCell>
-                  <TableCell align="right" sx={{ color: 'warning.main' }}>
+                  <TableCell align="right" sx={{ color: 'warning.main', fontSize: { xs: '0.875rem', xl: '1rem' } }}>
                     {formatCurrency(row.interest)}
                   </TableCell>
-                  <TableCell align="right" sx={{ color: 'text.secondary' }}>
+                  <TableCell align="right" sx={{ color: 'text.secondary', fontSize: { xs: '0.875rem', xl: '1rem' } }}>
                     {formatCurrency(row.remainingBalance)}
                   </TableCell>
                 </TableRow>

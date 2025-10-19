@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import {
-  Container,
   ThemeProvider,
   createTheme,
   CssBaseline,
@@ -38,6 +37,18 @@ const theme = createTheme({
       '"微軟正黑體"',
     ].join(','),
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+      xxl: 1920,  // 自定義斷點: Full HD
+      '2k': 2560,  // 自定義斷點: 2K
+      '4k': 3840,  // 自定義斷點: 4K
+    },
+  },
 })
 
 function App() {
@@ -52,33 +63,43 @@ function App() {
       <CssBaseline />
       <Box
         sx={{
+          width: '100vw',
           minHeight: '100vh',
           bgcolor: 'background.default',
-          py: { xs: 2, sm: 3, md: 4 },
-          px: { xs: 2, sm: 3 },
+          py: { xs: 2, sm: 3, md: 4, xl: 5, xxl: 6 },
           display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+          position: 'relative',
+          left: 0,
+          right: 0
         }}
       >
-        <Container
-          maxWidth="xl"
+        <Box
           sx={{
             width: '100%',
-            maxWidth: '1400px',
-            mx: 'auto'
+            maxWidth: {
+              xs: 'calc(100vw - 32px)',
+              sm: '600px',
+              md: '900px',
+              lg: '1200px',
+              xl: '1400px',
+              xxl: '1600px',
+            },
+            mx: 'auto',
+            px: { xs: 2, sm: 3, md: 4, xl: 5 }
           }}
         >
           {/* 標題區域 */}
-          <Box sx={{ textAlign: 'center', mb: { xs: 3, md: 4 } }}>
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2, mb: 2 }}>
-              <CalculateIcon sx={{ fontSize: { xs: 36, md: 48 }, color: 'primary.main' }} />
+          <Box sx={{ textAlign: 'center', mb: { xs: 3, md: 4, xl: 5 } }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: { xs: 2, xl: 3 }, mb: 2 }}>
+              <CalculateIcon sx={{ fontSize: { xs: 36, md: 48, xl: 56, xxl: 64 }, color: 'primary.main' }} />
               <Typography
                 variant="h3"
                 component="h1"
                 fontWeight="bold"
                 color="primary"
-                sx={{ fontSize: { xs: '1.75rem', sm: '2.5rem', md: '3rem' } }}
+                sx={{ fontSize: { xs: '1.75rem', sm: '2.5rem', md: '3rem', xl: '3.5rem', xxl: '4rem' } }}
               >
                 貸款計算器
               </Typography>
@@ -86,7 +107,7 @@ function App() {
             <Typography
               variant="subtitle1"
               color="text.secondary"
-              sx={{ fontSize: { xs: '0.875rem', sm: '1rem' } }}
+              sx={{ fontSize: { xs: '0.875rem', sm: '1rem', xl: '1.125rem', xxl: '1.25rem' } }}
             >
               輕鬆計算您的貸款方案，了解每月還款金額與利息明細
             </Typography>
@@ -127,7 +148,7 @@ function App() {
               <Tab label="本金平均攤還" />
             </Tabs>
 
-            <Box sx={{ p: { xs: 2, sm: 3, md: 4 } }}>
+            <Box sx={{ p: { xs: 2, sm: 3, md: 4, xl: 5 } }}>
               <LoanCalculator repaymentType={tabValue === 0 ? 'equal-payment' : 'equal-principal'} />
             </Box>
           </Paper>
@@ -142,7 +163,7 @@ function App() {
               註：本計算器僅供參考，實際貸款條件請以金融機構核定為準
             </Typography>
           </Box>
-        </Container>
+        </Box>
       </Box>
     </ThemeProvider>
   )
