@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Container, Typography, IconButton, Grid, useTheme, useMediaQuery } from '@mui/material';
+import { Box, Typography, IconButton, Grid, useTheme, useMediaQuery } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
@@ -23,7 +23,6 @@ const WeatherPage = () => {
         const data = generateMonthData(year, month);
         setWeatherData(data);
 
-        // Default to today or the first day of the month
         const today = new Date();
         if (year === today.getFullYear() && month === today.getMonth()) {
             const todayData = data.find(d => d.day === today.getDate());
@@ -49,12 +48,14 @@ const WeatherPage = () => {
     return (
         <Box sx={{
             minHeight: '100vh',
-            bgcolor: '#121212', // Even darker background for contrast
+            width: '100vw',
+            margin: 0,
+            padding: 0,
+            bgcolor: '#121212',
             color: 'white',
             position: 'relative',
             overflowX: 'hidden'
         }}>
-            {/* Subtle Background Texture/Gradient */}
             <Box
                 sx={{
                     position: 'absolute',
@@ -68,135 +69,125 @@ const WeatherPage = () => {
                 }}
             />
 
-            <Container maxWidth={false} sx={{
-                minHeight: '100vh',
-                p: 0,
+            <Box sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                p: { xs: 2, md: 4 },
                 display: 'flex',
-                flexDirection: 'column'
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                zIndex: 10
             }}>
-                {/* Header - Absolute positioning to float over content */}
-                <Box sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    p: { xs: 2, md: 4 },
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    zIndex: 10
-                }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <IconButton
-                            onClick={() => navigate('/')}
-                            sx={{
-                                color: 'white',
-                                mr: 2,
-                                border: '1px solid rgba(255,255,255,0.1)',
-                                borderRadius: '0', // Sharp
-                                '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' }
-                            }}
-                        >
-                            <HomeIcon />
-                        </IconButton>
-                        <Typography variant="h6" sx={{
-                            fontFamily: '"Playfair Display", serif',
-                            letterSpacing: '0.2em',
-                            fontWeight: 700,
-                            fontSize: '0.9rem'
-                        }}>
-                            TOOLIUFY / WEATHER
-                        </Typography>
-                    </Box>
-
-                    <Typography variant="caption" sx={{ opacity: 0.4, letterSpacing: '0.2em', display: { xs: 'none', sm: 'block' } }}>
-                        EST. 2025 — VOL. 1
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <IconButton
+                        onClick={() => navigate('/')}
+                        sx={{
+                            color: 'white',
+                            mr: 2,
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            borderRadius: '0',
+                            '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' }
+                        }}
+                    >
+                        <HomeIcon />
+                    </IconButton>
+                    <Typography variant="h6" sx={{
+                        fontFamily: '"Playfair Display", serif',
+                        letterSpacing: '0.2em',
+                        fontWeight: 700,
+                        fontSize: '0.9rem'
+                    }}>
+                        TOOLIUFY / WEATHER
                     </Typography>
                 </Box>
 
-                {/* Main Content - Split Layout */}
-                <Grid container sx={{ flexGrow: 1, zIndex: 1 }}>
+                <Typography variant="caption" sx={{ opacity: 0.4, letterSpacing: '0.2em', display: { xs: 'none', sm: 'block' } }}>
+                    EST. 2025 — VOL. 1
+                </Typography>
+            </Box>
 
-                    {/* Left Side: Calendar */}
-                    <Grid item xs={12} md={7} lg={8} sx={{
-                        p: { xs: 2, md: 8 },
-                        pt: { xs: 10, md: 12 }, // Account for header
+            <Grid container sx={{
+                minHeight: '100vh', width: '100%', zIndex: 1, display: 'flex',
+                alignItems: 'flex-center',
+                justifyContent: 'space-evenly',
+            }}>
+
+                <Grid item xs={12} md={6} sx={{
+                    p: { xs: 2, md: 6 },
+                    pt: { xs: 10, md: 12 },
+                    display: 'flex',
+                    flexDirection: 'column',
+                    order: { xs: 2, md: 1 },
+                    borderRight: { md: '1px solid rgba(255,255,255,0.05)' }
+                }}>
+                    <Box sx={{
                         display: 'flex',
-                        flexDirection: 'column',
-                        order: { xs: 2, md: 1 },
-                        borderRight: { md: '1px solid rgba(255,255,255,0.05)' }
+                        alignItems: 'flex-end',
+                        justifyContent: 'space-between',
+                        mb: 6,
+                        borderBottom: '1px solid white',
+                        pb: 2,
                     }}>
-                        {/* Month Navigation */}
-                        <Box sx={{
-                            display: 'flex',
-                            alignItems: 'flex-end',
-                            justifyContent: 'space-between',
-                            mb: 6,
-                            borderBottom: '1px solid white',
-                            pb: 2
-                        }}>
-                            <Box>
-                                <Typography variant="h1" sx={{
-                                    fontFamily: '"Playfair Display", serif',
-                                    fontWeight: 400,
-                                    fontSize: { xs: '3rem', md: '5rem', lg: '6rem' },
-                                    lineHeight: 0.9,
-                                    letterSpacing: '-0.03em'
-                                }}>
-                                    {monthNames[currentDate.getMonth()]}
-                                </Typography>
-                                <Typography variant="subtitle1" sx={{
-                                    color: 'rgba(255,255,255,0.4)',
-                                    letterSpacing: '0.4em',
-                                    fontSize: '1rem',
-                                    mt: 1
-                                }}>
-                                    {currentDate.getFullYear()}
-                                </Typography>
-                            </Box>
-
-                            <Box sx={{ display: 'flex', gap: 1 }}>
-                                <IconButton onClick={handlePrevMonth} sx={{ color: 'white', border: '1px solid rgba(255,255,255,0.2)', borderRadius: 0 }}>
-                                    <ArrowBackIcon />
-                                </IconButton>
-                                <IconButton onClick={handleNextMonth} sx={{ color: 'white', border: '1px solid rgba(255,255,255,0.2)', borderRadius: 0 }}>
-                                    <ArrowForwardIcon />
-                                </IconButton>
-                            </Box>
+                        <Box>
+                            <Typography variant="h1" sx={{
+                                fontFamily: '"Playfair Display", serif',
+                                fontWeight: 400,
+                                fontSize: { xs: '3rem', md: '5rem', lg: '6rem' },
+                                lineHeight: 0.9,
+                                letterSpacing: '-0.03em'
+                            }}>
+                                {monthNames[currentDate.getMonth()]}
+                            </Typography>
+                            <Typography variant="subtitle1" sx={{
+                                color: 'rgba(255,255,255,0.4)',
+                                letterSpacing: '0.4em',
+                                fontSize: '1rem',
+                                mt: 1
+                            }}>
+                                {currentDate.getFullYear()}
+                            </Typography>
                         </Box>
 
-                        {/* Calendar Grid */}
-                        <WeatherCalendar
-                            weatherData={weatherData}
-                            year={currentDate.getFullYear()}
-                            month={currentDate.getMonth()}
-                            onDayClick={setSelectedDay}
-                            selectedDay={selectedDay}
-                        />
-                    </Grid>
-
-                    {/* Right Side: Outfit Display */}
-                    <Grid item xs={12} md={5} lg={4} sx={{
-                        bgcolor: '#161616', // Slightly lighter dark
-                        order: { xs: 1, md: 2 },
-                        borderBottom: { xs: '1px solid rgba(255,255,255,0.1)', md: 'none' },
-                        position: 'relative'
-                    }}>
-                        {/* Sticky Container for Desktop */}
-                        <Box sx={{
-                            position: { md: 'sticky' },
-                            top: 0,
-                            height: { md: '100vh' },
-                            width: '100%',
-                            overflowY: 'auto',
-                            pt: { xs: 10, md: 0 } // Padding for mobile header
-                        }}>
-                            <OutfitDisplay weatherData={selectedDay} />
+                        <Box sx={{ display: 'flex', gap: 1 }}>
+                            <IconButton onClick={handlePrevMonth} sx={{ color: 'white', border: '1px solid rgba(255,255,255,0.2)', borderRadius: 0 }}>
+                                <ArrowBackIcon />
+                            </IconButton>
+                            <IconButton onClick={handleNextMonth} sx={{ color: 'white', border: '1px solid rgba(255,255,255,0.2)', borderRadius: 0 }}>
+                                <ArrowForwardIcon />
+                            </IconButton>
                         </Box>
-                    </Grid>
+                    </Box>
 
+                    <WeatherCalendar
+                        weatherData={weatherData}
+                        year={currentDate.getFullYear()}
+                        month={currentDate.getMonth()}
+                        onDayClick={setSelectedDay}
+                        selectedDay={selectedDay}
+                    />
                 </Grid>
-            </Container>
+
+                <Grid item xs={12} md={6} sx={{
+                    bgcolor: '#161616',
+                    order: { xs: 1, md: 2 },
+                    borderBottom: { xs: '1px solid rgba(255,255,255,0.1)', md: 'none' },
+                    position: 'relative'
+                }}>
+                    <Box sx={{
+                        position: { md: 'sticky' },
+                        top: 0,
+                        height: { md: '100vh' },
+                        width: '100%',
+                        overflowY: 'auto',
+                        pt: { xs: 10, md: 0 }
+                    }}>
+                        <OutfitDisplay weatherData={selectedDay} />
+                    </Box>
+                </Grid>
+
+            </Grid>
         </Box>
     );
 };
