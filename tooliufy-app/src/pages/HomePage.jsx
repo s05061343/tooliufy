@@ -19,7 +19,8 @@ import {
   Security as SecurityIcon,
   Analytics as AnalyticsIcon,
   ArrowForward as ArrowForwardIcon,
-  CheckCircle as CheckCircleIcon
+  CheckCircle as CheckCircleIcon,
+  WbSunny as WbSunnyIcon
 } from '@mui/icons-material'
 
 function HomePage() {
@@ -201,6 +202,27 @@ function HomePage() {
             >
               了解更多
             </Button>
+
+            <Button
+              variant="text"
+              size="large"
+              startIcon={<WbSunnyIcon />}
+              onClick={() => navigate('/weather')}
+              sx={{
+                py: { xs: 1.5, md: 2 },
+                px: { xs: 2, md: 3 },
+                fontSize: { xs: '1rem', md: '1.125rem' },
+                fontWeight: 'bold',
+                borderRadius: 3,
+                color: 'white',
+                '&:hover': {
+                  bgcolor: 'rgba(255, 255, 255, 0.1)',
+                  backdropFilter: 'blur(10px)'
+                }
+              }}
+            >
+              天氣日誌
+            </Button>
           </Stack>
 
           {/* 統計數據 */}
@@ -234,6 +256,63 @@ function HomePage() {
               </Grid>
             ))}
           </Grid>
+        </Box>
+
+        {/* Weather Preview Section */}
+        <Box sx={{ mb: 8 }}>
+          <Paper
+            elevation={0}
+            sx={{
+              p: { xs: 3, md: 5 },
+              borderRadius: 4,
+              background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
+              backdropFilter: 'blur(20px)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              display: 'flex',
+              flexDirection: { xs: 'column', md: 'row' },
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              overflow: 'hidden',
+              position: 'relative'
+            }}
+          >
+            <Box sx={{ position: 'relative', zIndex: 1, mb: { xs: 3, md: 0 }, textAlign: { xs: 'center', md: 'left' } }}>
+              <Chip
+                icon={<WbSunnyIcon sx={{ color: '#FFD700 !important' }} />}
+                label="今日天氣預報"
+                sx={{
+                  mb: 2,
+                  bgcolor: 'rgba(255,255,255,0.15)',
+                  color: 'white',
+                  fontWeight: 'bold',
+                  border: '1px solid rgba(255,255,255,0.2)'
+                }}
+              />
+              <Typography variant="h3" sx={{ color: 'white', fontWeight: 800, mb: 1 }}>
+                28°C <span style={{ fontSize: '1.5rem', fontWeight: 400, opacity: 0.8 }}>晴朗</span>
+              </Typography>
+              <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.8)', mb: 3 }}>
+                適合出遊的好天氣，別忘了查看完整的天氣日誌來規劃您的行程。
+              </Typography>
+              <Button
+                variant="contained"
+                endIcon={<ArrowForwardIcon />}
+                onClick={() => navigate('/weather')}
+                sx={{
+                  bgcolor: 'white',
+                  color: '#667eea',
+                  fontWeight: 'bold',
+                  '&:hover': { bgcolor: 'rgba(255,255,255,0.9)' }
+                }}
+              >
+                查看完整日曆
+              </Button>
+            </Box>
+
+            <Box sx={{ position: 'relative', width: { xs: '100%', md: '40%' }, height: '200px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <WbSunnyIcon sx={{ fontSize: 180, color: '#FFD700', filter: 'drop-shadow(0 0 30px rgba(255, 215, 0, 0.4))', animation: 'pulse 3s infinite' }} />
+            </Box>
+          </Paper>
         </Box>
 
         {/* Features Section */}

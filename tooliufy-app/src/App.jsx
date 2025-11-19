@@ -6,6 +6,7 @@ import {
 } from '@mui/material'
 import HomePage from './pages/HomePage'
 import CalculatorPage from './pages/CalculatorPage'
+import WeatherPage from './pages/WeatherPage'
 
 const theme = createTheme({
   palette: {
@@ -54,6 +55,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/calculator" element={<CalculatorPage />} />
+          <Route path="/weather" element={<WeatherPage />} />
         </Routes>
       </Router>
     </ThemeProvider>
