@@ -5,66 +5,51 @@ import {
   Button,
   Card,
   CardContent,
+  CardActions,
   Grid,
   Container,
-  Paper,
-  Chip,
-  Stack
+  Chip
 } from '@mui/material'
 import {
   Calculate as CalculateIcon,
-  AccountBalance as BankIcon,
-  TrendingUp as TrendingUpIcon,
-  Speed as SpeedIcon,
-  Security as SecurityIcon,
-  Analytics as AnalyticsIcon,
+  WbSunny as WbSunnyIcon,
   ArrowForward as ArrowForwardIcon,
-  CheckCircle as CheckCircleIcon,
-  WbSunny as WbSunnyIcon
+  Construction as ConstructionIcon
 } from '@mui/icons-material'
 
 function HomePage() {
   const navigate = useNavigate()
 
-  const features = [
+  const tools = [
     {
-      icon: <SpeedIcon sx={{ fontSize: 48 }} />,
-      title: '即時計算',
-      description: '輸入資料後立即顯示結果，無需等待',
-      color: '#1976d2'
+      id: 'calculator',
+      title: '貸款計算器',
+      description: '專業的房貸試算工具，支援本息與本金攤還，輕鬆規劃財務。',
+      icon: <CalculateIcon sx={{ fontSize: 40 }} />,
+      color: '#1976d2',
+      path: '/calculator',
+      action: '開始計算',
+      highlight: false
     },
     {
-      icon: <AnalyticsIcon sx={{ fontSize: 48 }} />,
-      title: '視覺化圖表',
-      description: '多種圖表類型，清楚展示貸款數據',
-      color: '#2e7d32'
+      id: 'weather',
+      title: '天氣日誌',
+      description: '精美的天氣月曆，記錄每日天氣與心情，讓生活更有溫度。',
+      icon: <WbSunnyIcon sx={{ fontSize: 40 }} />,
+      color: '#f57c00',
+      path: '/weather',
+      action: '查看日誌',
+      highlight: true
     },
     {
-      icon: <SecurityIcon sx={{ fontSize: 48 }} />,
-      title: '精確計算',
-      description: '採用標準金融計算公式，結果準確可靠',
-      color: '#ed6c02'
-    },
-    {
-      icon: <BankIcon sx={{ fontSize: 48 }} />,
-      title: '多種方案',
-      description: '支援本息攤還與本金攤還兩種方式',
-      color: '#9c27b0'
-    }
-  ]
-
-  const calculationTypes = [
-    {
-      title: '本息平均攤還',
-      description: '每月繳款金額固定，適合預算穩定的族群',
-      icon: <TrendingUpIcon />,
-      benefits: ['固定月付金額', '方便預算規劃', '初期利息較高']
-    },
-    {
-      title: '本金平均攤還',
-      description: '每月本金固定，利息遞減，總利息較低',
-      icon: <CalculateIcon />,
-      benefits: ['總利息較少', '月付金逐期遞減', '初期負擔較重']
+      id: 'coming-soon',
+      title: '更多功能',
+      description: '更多實用工具正在開發中，敬請期待...',
+      icon: <ConstructionIcon sx={{ fontSize: 40 }} />,
+      color: '#757575',
+      path: null,
+      action: '敬請期待',
+      highlight: false
     }
   ]
 
@@ -78,442 +63,150 @@ function HomePage() {
         overflow: 'hidden'
       }}
     >
-      {/* 背景裝飾 */}
+      {/* Background Decoration */}
       <Box
         sx={{
           position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
-          height: '60vh',
+          height: '70vh',
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           clipPath: 'ellipse(150% 100% at 50% 0%)',
           zIndex: 0
         }}
       />
 
-      {/* 主要內容 */}
       <Container
-        maxWidth={false}
+        maxWidth="lg"
         sx={{
           position: 'relative',
           zIndex: 1,
-          maxWidth: { xs: '100%', sm: '600px', md: '900px', lg: '1200px', xl: '1400px' },
-          mx: 'auto',
-          py: { xs: 4, md: 6, xl: 8 }
+          py: { xs: 4, md: 8 }
         }}
       >
         {/* Hero Section */}
         <Box sx={{ textAlign: 'center', mb: 8, color: 'white' }}>
           <Chip
-            label="免費線上工具"
+            label="v1.0.0"
             sx={{
               mb: 3,
               bgcolor: 'rgba(255, 255, 255, 0.2)',
               color: 'white',
               fontWeight: 'bold',
-              backdropFilter: 'blur(10px)',
-              fontSize: { xs: '0.875rem', md: '1rem' }
+              backdropFilter: 'blur(10px)'
             }}
           />
 
           <Typography
             variant="h1"
             sx={{
-              fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem', xl: '5.5rem' },
+              fontSize: { xs: '3rem', md: '5rem' },
               fontWeight: 900,
-              mb: 3,
+              mb: 2,
               background: 'linear-gradient(to right, #fff, #e0e7ff)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               textShadow: '0 4px 20px rgba(0,0,0,0.1)'
             }}
           >
-            貸款計算器
+            Tooliufy
           </Typography>
 
           <Typography
             variant="h5"
             sx={{
-              fontSize: { xs: '1.125rem', md: '1.5rem', xl: '1.75rem' },
-              mb: 5,
-              opacity: 0.95,
-              maxWidth: '800px',
+              fontSize: { xs: '1.2rem', md: '1.5rem' },
+              mb: 6,
+              opacity: 0.9,
+              maxWidth: '600px',
               mx: 'auto',
-              lineHeight: 1.6
+              fontWeight: 300
             }}
           >
-            專業、精準、易用的貸款試算工具
+            您的個人實用工具箱。
             <br />
-            輕鬆掌握您的財務規劃
+            整合貸款試算、天氣日誌等功能，讓生活更便利。
           </Typography>
-
-          <Stack
-            direction={{ xs: 'column', sm: 'row' }}
-            spacing={2}
-            justifyContent="center"
-            sx={{ mb: 6 }}
-          >
-            <Button
-              variant="contained"
-              size="large"
-              endIcon={<ArrowForwardIcon />}
-              onClick={() => navigate('/calculator')}
-              sx={{
-                py: { xs: 1.5, md: 2 },
-                px: { xs: 4, md: 6 },
-                fontSize: { xs: '1rem', md: '1.125rem' },
-                fontWeight: 'bold',
-                borderRadius: 3,
-                bgcolor: 'white',
-                color: 'primary.main',
-                boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
-                '&:hover': {
-                  bgcolor: 'grey.100',
-                  transform: 'translateY(-2px)',
-                  boxShadow: '0 12px 32px rgba(0,0,0,0.3)'
-                },
-                transition: 'all 0.3s ease'
-              }}
-            >
-              立即開始計算
-            </Button>
-
-            <Button
-              variant="outlined"
-              size="large"
-              onClick={() => document.getElementById('features').scrollIntoView({ behavior: 'smooth' })}
-              sx={{
-                py: { xs: 1.5, md: 2 },
-                px: { xs: 4, md: 6 },
-                fontSize: { xs: '1rem', md: '1.125rem' },
-                fontWeight: 'bold',
-                borderRadius: 3,
-                borderColor: 'white',
-                color: 'white',
-                borderWidth: 2,
-                '&:hover': {
-                  borderWidth: 2,
-                  borderColor: 'white',
-                  bgcolor: 'rgba(255, 255, 255, 0.1)',
-                  backdropFilter: 'blur(10px)'
-                }
-              }}
-            >
-              了解更多
-            </Button>
-
-            <Button
-              variant="text"
-              size="large"
-              startIcon={<WbSunnyIcon />}
-              onClick={() => navigate('/weather')}
-              sx={{
-                py: { xs: 1.5, md: 2 },
-                px: { xs: 2, md: 3 },
-                fontSize: { xs: '1rem', md: '1.125rem' },
-                fontWeight: 'bold',
-                borderRadius: 3,
-                color: 'white',
-                '&:hover': {
-                  bgcolor: 'rgba(255, 255, 255, 0.1)',
-                  backdropFilter: 'blur(10px)'
-                }
-              }}
-            >
-              天氣日誌
-            </Button>
-          </Stack>
-
-          {/* 統計數據 */}
-          <Grid container spacing={3} sx={{ maxWidth: '800px', mx: 'auto' }}>
-            {[
-              { number: '100%', label: '免費使用' },
-              { number: '2種', label: '計算方式' },
-              { number: '即時', label: '顯示結果' }
-            ].map((stat, index) => (
-              <Grid item xs={4} key={index}>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    p: 2,
-                    bgcolor: 'rgba(255, 255, 255, 0.15)',
-                    backdropFilter: 'blur(10px)',
-                    borderRadius: 2,
-                    border: '1px solid rgba(255, 255, 255, 0.2)'
-                  }}
-                >
-                  <Typography
-                    variant="h4"
-                    sx={{ fontWeight: 'bold', mb: 0.5, fontSize: { xs: '1.5rem', md: '2rem' } }}
-                  >
-                    {stat.number}
-                  </Typography>
-                  <Typography variant="body2" sx={{ opacity: 0.9, fontSize: { xs: '0.75rem', md: '0.875rem' } }}>
-                    {stat.label}
-                  </Typography>
-                </Paper>
-              </Grid>
-            ))}
-          </Grid>
         </Box>
 
-        {/* Weather Preview Section */}
-        <Box sx={{ mb: 8 }}>
-          <Paper
-            elevation={0}
-            sx={{
-              p: { xs: 3, md: 5 },
-              borderRadius: 4,
-              background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
-              backdropFilter: 'blur(20px)',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              overflow: 'hidden',
-              position: 'relative'
-            }}
-          >
-            <Box sx={{ position: 'relative', zIndex: 1, mb: { xs: 3, md: 0 }, textAlign: { xs: 'center', md: 'left' } }}>
-              <Chip
-                icon={<WbSunnyIcon sx={{ color: '#FFD700 !important' }} />}
-                label="今日天氣預報"
+        {/* Tools Grid */}
+        <Grid container spacing={4} justifyContent="center">
+          {tools.map((tool) => (
+            <Grid item xs={12} md={4} key={tool.id}>
+              <Card
+                elevation={0}
                 sx={{
-                  mb: 2,
-                  bgcolor: 'rgba(255,255,255,0.15)',
-                  color: 'white',
-                  fontWeight: 'bold',
-                  border: '1px solid rgba(255,255,255,0.2)'
-                }}
-              />
-              <Typography variant="h3" sx={{ color: 'white', fontWeight: 800, mb: 1 }}>
-                28°C <span style={{ fontSize: '1.5rem', fontWeight: 400, opacity: 0.8 }}>晴朗</span>
-              </Typography>
-              <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.8)', mb: 3 }}>
-                適合出遊的好天氣，別忘了查看完整的天氣日誌來規劃您的行程。
-              </Typography>
-              <Button
-                variant="contained"
-                endIcon={<ArrowForwardIcon />}
-                onClick={() => navigate('/weather')}
-                sx={{
-                  bgcolor: 'white',
-                  color: '#667eea',
-                  fontWeight: 'bold',
-                  '&:hover': { bgcolor: 'rgba(255,255,255,0.9)' }
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  borderRadius: 4,
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    transform: 'translateY(-8px)',
+                    boxShadow: '0 12px 40px rgba(0,0,0,0.1)',
+                    background: 'rgba(255, 255, 255, 0.95)'
+                  }
                 }}
               >
-                查看完整日曆
-              </Button>
-            </Box>
-
-            <Box sx={{ position: 'relative', width: { xs: '100%', md: '40%' }, height: '200px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <WbSunnyIcon sx={{ fontSize: 180, color: '#FFD700', filter: 'drop-shadow(0 0 30px rgba(255, 215, 0, 0.4))', animation: 'pulse 3s infinite' }} />
-            </Box>
-          </Paper>
-        </Box>
-
-        {/* Features Section */}
-        <Box id="features" sx={{ mb: 8 }}>
-          <Typography
-            variant="h3"
-            align="center"
-            sx={{
-              mb: 2,
-              fontWeight: 'bold',
-              fontSize: { xs: '2rem', md: '2.5rem', xl: '3rem' }
-            }}
-          >
-            核心功能
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            align="center"
-            color="text.secondary"
-            sx={{ mb: 6, fontSize: { xs: '1rem', md: '1.125rem' } }}
-          >
-            強大且易用的功能，讓財務規劃更輕鬆
-          </Typography>
-
-          <Grid container spacing={3}>
-            {features.map((feature, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <Card
-                  elevation={0}
-                  sx={{
-                    height: '100%',
-                    border: '2px solid',
-                    borderColor: 'divider',
-                    borderRadius: 3,
-                    transition: 'all 0.3s ease',
-                    '&:hover': {
-                      borderColor: feature.color,
-                      transform: 'translateY(-8px)',
-                      boxShadow: `0 12px 24px ${feature.color}30`
-                    }
-                  }}
-                >
-                  <CardContent sx={{ textAlign: 'center', p: 4 }}>
-                    <Box
-                      sx={{
-                        width: 80,
-                        height: 80,
-                        borderRadius: '50%',
-                        bgcolor: `${feature.color}15`,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        mx: 'auto',
-                        mb: 3,
-                        color: feature.color
-                      }}
-                    >
-                      {feature.icon}
-                    </Box>
-                    <Typography variant="h6" fontWeight="bold" gutterBottom>
-                      {feature.title}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {feature.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-
-        {/* Calculation Types */}
-        <Box sx={{ mb: 8 }}>
-          <Typography
-            variant="h3"
-            align="center"
-            sx={{
-              mb: 2,
-              fontWeight: 'bold',
-              fontSize: { xs: '2rem', md: '2.5rem', xl: '3rem' }
-            }}
-          >
-            計算方式
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            align="center"
-            color="text.secondary"
-            sx={{ mb: 6, fontSize: { xs: '1rem', md: '1.125rem' } }}
-          >
-            選擇最適合您的還款方式
-          </Typography>
-
-          <Grid container spacing={4}>
-            {calculationTypes.map((type, index) => (
-              <Grid item xs={12} md={6} key={index}>
-                <Paper
-                  elevation={3}
-                  sx={{
-                    p: 4,
-                    height: '100%',
-                    borderRadius: 3,
-                    border: '2px solid',
-                    borderColor: 'primary.light',
-                    transition: 'all 0.3s ease',
-                    '&:hover': {
-                      borderColor: 'primary.main',
-                      transform: 'scale(1.02)',
-                      boxShadow: 6
-                    }
-                  }}
-                >
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-                    <Box
-                      sx={{
-                        bgcolor: 'primary.main',
-                        color: 'white',
-                        p: 1.5,
-                        borderRadius: 2,
-                        mr: 2
-                      }}
-                    >
-                      {type.icon}
-                    </Box>
-                    <Typography variant="h5" fontWeight="bold">
-                      {type.title}
-                    </Typography>
+                <CardContent sx={{ p: 4, flexGrow: 1, textAlign: 'center' }}>
+                  <Box
+                    sx={{
+                      width: 80,
+                      height: 80,
+                      borderRadius: '50%',
+                      bgcolor: `${tool.color}15`,
+                      color: tool.color,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      mx: 'auto',
+                      mb: 3
+                    }}
+                  >
+                    {tool.icon}
                   </Box>
-
-                  <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
-                    {type.description}
+                  <Typography variant="h5" fontWeight="bold" gutterBottom>
+                    {tool.title}
                   </Typography>
-
-                  <Stack spacing={1.5}>
-                    {type.benefits.map((benefit, idx) => (
-                      <Box key={idx} sx={{ display: 'flex', alignItems: 'center' }}>
-                        <CheckCircleIcon sx={{ color: 'success.main', mr: 1.5, fontSize: 20 }} />
-                        <Typography variant="body2">{benefit}</Typography>
-                      </Box>
-                    ))}
-                  </Stack>
-                </Paper>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-
-        {/* CTA Section */}
-        <Paper
-          elevation={0}
-          sx={{
-            p: { xs: 4, md: 6 },
-            borderRadius: 4,
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            color: 'white',
-            textAlign: 'center'
-          }}
-        >
-          <Typography
-            variant="h3"
-            sx={{
-              mb: 2,
-              fontWeight: 'bold',
-              fontSize: { xs: '1.75rem', md: '2.5rem' }
-            }}
-          >
-            準備好開始計算了嗎？
-          </Typography>
-          <Typography variant="h6" sx={{ mb: 4, opacity: 0.95, fontSize: { xs: '1rem', md: '1.25rem' } }}>
-            立即使用我們的貸款計算器，規劃您的理想未來
-          </Typography>
-          <Button
-            variant="contained"
-            size="large"
-            endIcon={<ArrowForwardIcon />}
-            onClick={() => navigate('/calculator')}
-            sx={{
-              py: 2,
-              px: 6,
-              fontSize: '1.125rem',
-              fontWeight: 'bold',
-              borderRadius: 3,
-              bgcolor: 'white',
-              color: 'primary.main',
-              boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
-              '&:hover': {
-                bgcolor: 'grey.100',
-                transform: 'translateY(-2px)',
-                boxShadow: '0 12px 32px rgba(0,0,0,0.3)'
-              }
-            }}
-          >
-            開始計算
-          </Button>
-        </Paper>
+                  <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
+                    {tool.description}
+                  </Typography>
+                </CardContent>
+                <CardActions sx={{ p: 3, pt: 0, justifyContent: 'center' }}>
+                  <Button
+                    variant={tool.highlight ? "contained" : "outlined"}
+                    size="large"
+                    endIcon={tool.path ? <ArrowForwardIcon /> : null}
+                    onClick={() => tool.path && navigate(tool.path)}
+                    disabled={!tool.path}
+                    sx={{
+                      borderRadius: 3,
+                      px: 4,
+                      bgcolor: tool.highlight ? tool.color : 'transparent',
+                      borderColor: tool.color,
+                      color: tool.highlight ? 'white' : tool.color,
+                      '&:hover': {
+                        bgcolor: tool.highlight ? tool.color : `${tool.color}10`,
+                        borderColor: tool.color
+                      }
+                    }}
+                  >
+                    {tool.action}
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
 
         {/* Footer */}
-        <Box sx={{ mt: 8, textAlign: 'center', color: 'text.secondary' }}>
+        <Box sx={{ mt: 12, textAlign: 'center', color: 'text.secondary' }}>
           <Typography variant="body2">
-            © 2025 貸款計算器 | 本計算器僅供參考，實際貸款條件請以金融機構核定為準
+            © 2025 Tooliufy | Designed for simplicity
           </Typography>
         </Box>
       </Container>
